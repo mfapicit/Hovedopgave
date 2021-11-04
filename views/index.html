@@ -1,22 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UT</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="js/index.js" defer></script>
+    <title>Document</title>
 </head>
-
 <body>
-    <center>
-        <h1>HEJ MED JER</h1>
-        <h2>Dette er en test</h2>
-        <H3>Håber dette lykkes</H3>
-        <h4>Det gør det vist</h4>
-        <h5>Mega fedt</h5>
-        <h6>Ses</h6>
-    </center>
-</body>
+    <section>
+        <div class="container">
+            <h2>Definer transport</h2>
+            <form>
+                <div class="wrapper">
+                    <div class="box">
+                        <label for="utNummer">UT nummer</label>
+                        <input type="text" name="utNummer">
+                    </div>
+                    <div class="box">
+                        <label for="fnames">Dato/Init</label>
+                        <input type="text" name="fnames">
+                    </div>
+                </div>
 
+                <div class="wrapper">
+                    <div class="box">
+                        <label for="utNummer">Godsart</label>
+                        <input type="text" name="Godsart">
+                    </div>
+                    <div class="box">
+                        <label for="Vongnlitra">Vongnlitra</label>
+                        <input type="text" name="Vongnlitra">
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box">
+                        <label for="utNummer">Vongnlitra</label>
+                        <input type="text" name="Vongnlitra">
+                    </div>
+                    <div class="box">
+                        <label for="Vongnlitra">Akselafstand</label>
+                        <input type="text" name="Akselafstand">
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box">
+                        <label for="utNummer">Akselafstand i bogie </label>
+                        <input type="text" name="Akselafstand i bogie ">
+                    </div>
+                    <div class="box">
+                        <label for="Vongnlitra">Akselantal</label>
+                        <input type="text" name="Akselantal">
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Afstand fra vognmidte</th>
+                            <th>Højde over SO </th>
+                            <th>Indv. afstand fra  aksel/bogiec</th>
+                            <th>Uddv. afstand fra aksel/bogiec</th>
+                        </tr>
+                    </thead>
+                </table>
+            </form>
+       </div>
+    </section>
+
+    <section>
+        <div class="billedeprofil">
+            <h2>indsæt grafisk profil</h2>
+            <img src="images/img.png" alt="">
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <div class="billedetegneprofil">
+                <h2> indsæt tegnebræt</h2>
+                <img src="images/tegneprofil.png" alt="">
+            </div>
+            <div class="knap">
+                <button id="tegnBtn">tegn</button>
+                <button>slet</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="contact-right">
+            <h2>midlertidig titel</h2>
+            <form>
+                <div class="outerline">
+                    <div class="input-row">
+                        <label for="">Identifikation</label>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for> strækning</label>
+                            <input type="text" style="width: 30px;">
+                            <label for=""> - </label>
+                            <input type="text" style="width: 30px;">
+                        </div>
+                        <div class="input-group">
+                            <label for> Spor</label>
+                            <input type="text" style="width: 50px;">
+                            <label for> Kilometer</label>
+                            <input type="text" style="width: 50px;">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="outerline">
+                    <div class="input-row">
+                        <label for="">Dato/initialer</label>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for> Oprettelse</label>
+                            <input type="text" style="width: 60px;">
+                            <label for=""> / </label>
+                            <input type="text" style="width: 40px;">
+                        </div>
+                        <div class="input-group">
+                            <label for> Reviderede</label>
+                            <input type="text" style="width: 60px;">
+                            <label for=""> / </label>
+                            <input type="text" style="width: 40px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="outerline">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for> Transport undersøges</label>
+                        </div>
+                        <div class="input-group">
+                            <label for> Behandlet</label>
+                        </div>
+                        <div class="input-group">
+                            <label for> Dispensation</label>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input type="radio">
+                            <label for> Ja</label>
+                            <input type="radio">
+                            <label for> nej</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="radio">
+                            <label for> Ja</label>
+                            <input type="radio">
+                            <label for> nej</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="radio">
+                            <label for> Ja</label>
+                            <input type="radio">
+                            <label for> nej</label>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="outerline">
+                    <div class="input-row">
+                        <label for="">Genstandsbetegnelse</label>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <select name="" id="scroll"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="outerline">
+                    <div class="input-row">
+                        <label for="">Teskt til transporttilladelse</label>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input type="text" style="width: 400px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="outerline">
+                    <div class="input-row">
+                        <label for="">Notat</label>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <textarea name="" id="" cols="52" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
 </html>
