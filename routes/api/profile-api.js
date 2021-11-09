@@ -7,7 +7,7 @@ const controller = require('../../controllers/profile-controller')
 router
     .post('/profiles', postEndpoint)
 
-    
+
 // Endpoint callback functions
 
 // post Endpoint to create new profile
@@ -19,6 +19,7 @@ async function postEndpoint(req, res, next) {
         })
         .catch(next)
 }
+
 
 module.exports = router
 

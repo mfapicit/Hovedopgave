@@ -1,8 +1,6 @@
-
-
 function getProfile() {
     const profile = {
-        utNumber: 1.5,
+        utNumber: 2,
         dato: '10/11-2021',
         godsType: 'Godstype',
         vognLitra: 'Vognlitra',

@@ -8,3 +8,6 @@ exports.create = async function (data) {
     return await Profile.create(data)
 }
 
+exports.checkIfUTExists = async function (utNumber) {
+    return await Profile.findOne().where('utNumber').eq(utNumber).exec()
+}

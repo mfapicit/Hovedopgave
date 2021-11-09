@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/testDB', { useNewUrlParser: true,useUnifiedTopology:true})
+mongoose.connect('mongodb://localhost:27017/testDB', { useNewUrlParser: true,useUnifiedTopology:true})
 
 app.use(express.json())
 
