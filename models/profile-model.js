@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Schema for saved profiles
 const profileSchema = new mongoose.Schema({
     utNumber: Number,
     dato: String,
