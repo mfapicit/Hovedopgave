@@ -1,41 +1,64 @@
 body, html{
     height: 100vh;
+    background-color: rgb(150, 194, 252);
 }
 
-body{
-    margin: 0;
-    margin-top: 5%;
-    margin-left: 5%;
+h1 {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 43% fit-content(10%);
-    grid-template-areas: 
-    "section1 section2 section3"
-    "section4 section5 section6";
-    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    font-size: 50px;
+    font-weight: 500;
+    border: solid 1px;
 }
 
 h2{
     text-align: center;
 }
 
+.containerMaster{
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 0.2fr 0.2fr;
+    /*grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 43% fit-content(10%);
+    /*grid-template-areas: 
+    "section1 section2 section3"
+    "section4 section5 section6";
+    */
+    grid-gap: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+section {
+    border: solid 1px;
+    border-color: rgb(38, 73, 139);
+    border-radius: 1%;
+}
+
 section:nth-of-type(1){
-    grid-area: section1;
+    /*grid-area: section1;*/
     background-color: rgb(176, 176, 255);
     
     background: cornflowerblue;
 }
 section:nth-of-type(2){
-    grid-area: section2;
+    /*grid-area: section2;*/
     background-color: rgb(118, 118, 224);
 }
 section:nth-of-type(3){
-    grid-area: section3;
+    /*grid-area: section3;*/
     background-color: rgb(78, 78, 243);
 }
 
 section:nth-of-type(4){
-    grid-area: section4;
+    /*grid-area: section4;*/
     background: cornflowerblue;
 }
 
@@ -48,7 +71,9 @@ section:nth-of-type(4){
 
 
 .wrapper .box{
-    padding: 5px;
+    padding: 3px;
+    padding-bottom: 5px;
+    margin-right: 3%;
 }
 
 .wrapper .box input{
@@ -58,14 +83,15 @@ section:nth-of-type(4){
 table{
     margin-top: 10px;
     font-size: 12px;
+    margin-left: 0.5%;
 }
+
+/* Hvorfor 2 forskellige??? */
 
 table{
-    width: 100%;
+    width: 99%;
     border: solid;
 }
-
-
 
 .billedeprofil img{
     display: block;
@@ -92,13 +118,10 @@ table{
 .knap button {
     margin-right: 5%;
     margin-left: 5%;
+    margin-bottom: 5%;
     font-size: 15px;
     width: 10%;
 }
-
-
-
-
 
 .contact-right{
     margin: 10px;
@@ -118,3 +141,33 @@ table{
     width: 408px;
 }
 
+
+/*
+Responsiv grid
+*/
+@media (max-width: 1500px) {
+    .containerMaster {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.2fr 0.2fr;
+    }
+}
+
+@media (max-width: 1000px) {
+    .containerMaster {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr;
+        }
+    section {
+        max-width: 700px;
+        margin-left: 100px;
+    }
+    table {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 800px) {
+    section {
+        margin-left: 0px;
+    }
+}

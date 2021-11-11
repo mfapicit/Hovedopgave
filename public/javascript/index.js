@@ -6,7 +6,7 @@ const tegnButton = document.getElementById('tegnBtn');
  */
 function getProfile() {
     const profile = {
-        utNumber: 2,
+        utNumber: 23,
         dato: '10/11-2021',
         godsType: 'Godstype',
         vognLitra: 'Vognlitra',

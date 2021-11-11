@@ -26,7 +26,7 @@ async function getFromUTEndpoint(req, res, next) {
     await controller
         .getByUTNumber(req.params.utNumber)
         .then((result) => {
-            if(!result) res.send({}) // Denne metode skal oftes ikke returnere noget, derfor en grim, men funktionel løsning, for at det kan lykkes
+            if(!result) res.send({}) // Denne metode returnere ofte ikke noget, derfor en grim, men funktionel løsning, for at det kan lykkes
             else res.status(200).send(result)
         })
         .catch(next)
