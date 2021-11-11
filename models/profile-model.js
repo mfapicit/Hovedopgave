@@ -8,7 +8,8 @@ const profileSchema = new mongoose.Schema({
     vognLitra: String,
     axleDistance: Number,
     axleDistanceInBoogie: Number,
-    axelCount: Number
+    axleCount: Number,
+    godsLenght: Number
 })
 
 module.exports = mongoose.model('Profile', profileSchema)
