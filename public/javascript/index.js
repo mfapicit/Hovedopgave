@@ -34,13 +34,13 @@ async function submit() {
     try {
         var foundUTNumber
         const profile = getProfile()
-        await findByUT(profile.utNumber).then(data => {foundUTNumber = data.utNumber})
-        if (foundUTNumber === profile.utNumber)   getSnackbar(`FEJL! UT NUMMER ${profile.utNumber} FINDES ALLEREDE I DATABASEN`)
+        await findByUT(profile.utNumber).then(data => { foundUTNumber = data.utNumber })
+        if (foundUTNumber === profile.utNumber) getSnackbar(`FEJL! UT NUMMER ${profile.utNumber} FINDES ALLEREDE I DATABASEN`)
         else var accept = confirm("VIL DU OPRETTE DENNE PROFIL?\n" + stringBuilder(profile))
-        if(accept == true) {
-        let url = '/api/profiles'
-        await post(url, profile)
-        window.location.assign(`/`)
+        if (accept == true) {
+            let url = '/api/profiles'
+            await post(url, profile)
+            window.location.assign(`/`)
         }
     } catch (error) {
         console.log(error)
@@ -50,16 +50,31 @@ async function submit() {
 tegnButton.onclick = submit;
 
 function stringBuilder(profile) {
-var stringBuilder = []
-stringBuilder.push(`\nUT NUMMER: ${profile.utNumber}\n`,
-                   `DATO: ${profile.dato}\n`,
-                   `GODSTYPE: ${profile.godsType}\n`,
-                   `VOGNLITRA: ${profile.vognLitra}\n`,
-                   `AXLE DISTANCE: ${profile.axleDistance}\n`,
-                   `AXLE DISTANCE IN BOOGIE: ${profile.axleDistanceInBoogie}\n`,
-                   `AXLE COUNT: ${profile.axleCount}\n`, 
-                   `GODSLENGHT: ${profile.godsLenght}\n`)
+    var stringBuilder = []
+    stringBuilder.push(`\nUT NUMMER: ${profile.utNumber}\n`,
+        `DATO: ${profile.dato}\n`,
+        `GODSTYPE: ${profile.godsType}\n`,
+        `VOGNLITRA: ${profile.vognLitra}\n`,
+        `AXLE DISTANCE: ${profile.axleDistance}\n`,
+        `AXLE DISTANCE IN BOOGIE: ${profile.axleDistanceInBoogie}\n`,
+        `AXLE COUNT: ${profile.axleCount}\n`,
+        `GODSLENGHT: ${profile.godsLenght}\n`)
 
-return stringBuilder.join(``)
+    return stringBuilder.join(``)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

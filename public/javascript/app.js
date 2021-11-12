@@ -6,14 +6,14 @@
  * @param {Object} data 
  * @returns created profile to the API and DB
  */
- async function post(url, data) {
-    const respons = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    })
-    if (respons.status !== 201 && respons.status !== 200) throw new Error(respons.status)
-    return await respons.json()
+async function post(url, data) {
+  const respons = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" }
+  })
+  if (respons.status !== 201 && respons.status !== 200) throw new Error(respons.status)
+  return await respons.json()
 }
 
 /**
@@ -21,9 +21,9 @@
 * @returns The Json object from the HTTP call.
 */
 async function get(url) {
-    const respons = await fetch(url)
-    if (respons.status !== 200) throw new Error(respons.status)
-    return await respons.json()
+  const respons = await fetch(url)
+  if (respons.status !== 200) throw new Error(respons.status)
+  return await respons.json()
 }
 
 /////////////////////////////////////////////////////
@@ -45,5 +45,5 @@ function getSnackbar(text) {
   snackbar.className = "show";
 
   // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 7000);
+  setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 7000);
 }
