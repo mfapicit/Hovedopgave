@@ -1,4 +1,4 @@
-const tegnButton = document.getElementById('tegnBtn');
+const tegnButton = document.getElementById('submitBtn');
 
 /**
  * Method to save the values of the profile
@@ -6,16 +6,28 @@ const tegnButton = document.getElementById('tegnBtn');
  */
 function getProfile() {
     const profile = {
-        utNumber: 23,
-        dato: '10/11-2021',
-        godsType: 'Godstype',
-        vognLitra: 'Vognlitra',
-        axleDistance: 200.52,
-        axleDistanceInBoogie: 200,
-        axleCount: 200,
-        godsLenght: 100
+        utNumber: document.getElementById('utNumberInput').value,
+        dato: document.getElementById('datoInput').value,
+        godsType: document.getElementById('godsartInput').value,
+        vognLitra: document.getElementById('vognlitraInput').value,
+        axleDistance: document.getElementById('axleDistance').value,
+        axleDistanceInBoogie: document.getElementById('axleDistanceInBoogieInput').value,
+        axleCount: document.getElementById('axleCountInput').value,
+        godsLenght: document.getElementById('godslengthInput').value
     }
+    checkForEmptyInput()
     return profile
+}
+
+function checkForEmptyInput() {
+    if (document.getElementById('utNumberInput').value.trim() == "") throw "UT inputfelt ikke udfyldt"
+    if (document.getElementById('datoInput').value.trim() == "") throw "Dato inputfelt ikke udfyldt"
+    if (document.getElementById('godsartInput').value.trim() == "") throw "Godsart inputfelt ikke udfyldt"
+    if (document.getElementById('vognlitraInput').value.trim() == "") throw "Vognlitra inputfelt ikke udfyldt"
+    if (document.getElementById('godslengthInput').value.trim() == "") throw "Godslængde inputfelt ikke udfyldt"
+    if (document.getElementById('axleDistance').value.trim() == "") throw "Akseldistance inputfelt ikke udfyldt"
+    if (document.getElementById('axleDistanceInBoogieInput').value.trim() == "") throw "Akseldistance mellem boogierne inputfelt ikke udfyldt"
+    if (document.getElementById('axleCountInput').value.trim() == "") throw "Aksel antal inputfelt ikke udfyldt"
 }
 
 /**
@@ -33,21 +45,23 @@ async function findByUT(utNumber) {
 async function submit() {
     try {
         var foundUTNumber
-        const profile = getProfile()
+        var profile = getProfile()
+        console.log(profile)
         await findByUT(profile.utNumber).then(data => { foundUTNumber = data.utNumber })
-        if (foundUTNumber === profile.utNumber) getSnackbar(`FEJL! UT NUMMER ${profile.utNumber} FINDES ALLEREDE I DATABASEN`)
+        if (foundUTNumber == profile.utNumber) getSnackbar(`FEJL! UT NUMMER ${profile.utNumber} FINDES ALLEREDE I DATABASEN`)
         else var accept = confirm("VIL DU OPRETTE DENNE PROFIL?\n" + stringBuilder(profile))
         if (accept == true) {
             let url = '/api/profiles'
             await post(url, profile)
+            getSnackbar('Profil oprettet')
             window.location.assign(`/`)
         }
     } catch (error) {
-        console.log(error)
+        getSnackbar(error)
     }
 }
 
-tegnButton.onclick = submit;
+submitBtn.onclick = submit;
 
 function stringBuilder(profile) {
     var stringBuilder = []
@@ -62,6 +76,7 @@ function stringBuilder(profile) {
 
     return stringBuilder.join(``)
 }
+
 
 
 

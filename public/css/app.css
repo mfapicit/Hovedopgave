@@ -3,7 +3,7 @@
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 150px; /* Set a default minimum width */
     max-width: 350px; 
-    margin-left: -125px; /* Divide value of min-width by 2 */
+    margin-left: -165px; /* Divide value of min-width by 2 */
     background-color: #00292b; /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
@@ -11,7 +11,7 @@
     padding: 16px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
-    left: 47%; /* Center the snackbar */
+    left: 52%; /* Center the snackbar */
     bottom: 30px; /* 30px from the bottom */
     font-family: Georgia, 'Times New Roman', Times, serif;
   }

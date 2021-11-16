@@ -28,15 +28,14 @@ async function get(url) {
 
 /////////////////////////////////////////////////////
 
+var snackbar = document.getElementById("snackbar");
+
 /**
  * Used to show snackbar in the bottom of a webside
  * Remember to create a div#snackbar in your HTML file for this to work on the specifik page
  * @param {String} text is the text inside the snackbar
  */
 function getSnackbar(text) {
-
-  // Get the snackbar DIV
-  var snackbar = document.getElementById("snackbar");
 
   // Set the text of snackbar
   snackbar.innerHTML = text
