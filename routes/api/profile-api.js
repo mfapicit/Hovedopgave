@@ -7,6 +7,7 @@ const controller = require('../../controllers/profile-controller')
 router
     .post('/profiles', postEndpoint)
     .get('/profiles/:utNumber', getFromUTEndpoint)
+    .put('/profiles/:utNumber', updateEndpoint)
 
 
 // Endpoint callback functions
@@ -27,6 +28,16 @@ async function getFromUTEndpoint(req, res, next) {
         .getByUTNumber(req.params.utNumber)
         .then((result) => {
             if (!result) res.send({}) // Denne metode returnere ofte ikke noget, derfor en grim, men funktionel løsning, for at det kan lykkes
+            else res.status(200).send(result)
+        })
+        .catch(next)
+}
+
+async function updateEndpoint(req, res, next) {
+    await controller
+        .findOneAndUpdate(req.params.id, req.body)
+        .then((result) => {
+            if (!result) res.sendStatus(404)
             else res.status(200).send(result)
         })
         .catch(next)

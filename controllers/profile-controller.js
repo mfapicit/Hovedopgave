@@ -15,3 +15,11 @@ exports.create = async function (data) {
 exports.getByUTNumber = async function (utNumber) {
     return await Profile.findOne().where('utNumber').eq(utNumber).exec()
 }
+
+exports.findOneAndUpdate = async function (utNumber, data) {
+    const profileToUpdate = await getByUTNumber(utNumber)
+    id = profileToUpdate._id
+
+    return await Profile.findByIdAndUpdate(id, data, { new: true }).exec()
+
+}
