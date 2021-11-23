@@ -22,7 +22,7 @@
 
     <div class="containerMaster">
         <section>
-            <div id="test" class="container">
+            <div id="formDiv" class="container">
                 <h2>Definer Transport</h2>
                 <div class="searchContainer">
                     <input id="searchInput" type="text" placeholder="Søg på UT nummer">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="box">
                             <label>Dato/Init</label>
-                            <input id="datoInput" type="text" name="fnames" required>
+                            <input id="datoInput" type="date" name="fnames" required>
                         </div>
                     </div>
                     <div class="wrapper">
@@ -74,18 +74,40 @@
                             <label>Akselantal</label>
                             <input id="axleCountInput" type="text" name="Akselantal" required>
                         </div>
-
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Afstand fra vognmidte</th>
-                                <th>Højde over SO </th>
-                                <th>Indv. afstand fra aksel/bogiec</th>
-                                <th>Uddv. afstand fra aksel/bogiec</th>
-                            </tr>
-                        </thead>
-                    </table>
+                    <div class="wrapper">
+                        <div class="box">
+                            <label>Indv. afstand fra aksel</label>
+                            <input id="insideDistanceFromAxelToBoogie" type="text" required>
+                        </div>
+                        <div class="box">
+                            <label>Uddv. afstand fra aksel</label>
+                            <input id="outsideDistanceFromAxelToBoogie" type="text" required>
+                        </div>
+                    </div>
+                    <div class="listDiv">
+                        <div id="x-axis">
+                            <h4>Afstand fra vognmidte
+                                <select onchange="makeInputFields(value)" id="inputCount">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                </select>
+                            </h4>
+                            <div id="xInputs">
+                            </div>
+                        </div>
+                        <div id="y-axis">
+                            <h4>Højde over SO</h4>
+                            <div id="yInputs">
+                            </div>
+                        </div>
+                    </div>
                     <input type="submit" id="submitBtn" value="Opret">
                 </form>
             </div>
@@ -99,15 +121,13 @@
         </section>
 
         <section>
-            <div>
+            <div class="drawingSection">
                 <div class="billedetegneprofil">
                     <h2> indsæt tegnebræt</h2>
                     <img src="images/tegneprofil.png" alt="">
                 </div>
-                <div class="knap">
-                    <button id="tegnBtn">tegn</button>
-                    <button id="sletBtn">slet</button>
-                </div>
+                <button id="tegnBtn">tegn</button>
+                <button id="sletBtn">slet</button>
             </div>
         </section>
 

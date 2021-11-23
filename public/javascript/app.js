@@ -64,3 +64,4 @@ function getSnackbar(text) {
   // After 3 seconds, remove the show class from DIV
   setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 7000);
 }
+

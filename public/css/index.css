@@ -16,6 +16,22 @@ h2{
     
 }
 
+.listDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 50px;
+}
+
+.listDiv h4 {
+    margin-left: 12px;
+}
+
+.listDiv input {
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+
 .clearAndDeleteContainer {
     display: grid;
     grid-template-columns: 1fr 10fr;
@@ -33,7 +49,7 @@ h2{
 }
 
 #submitBtn {
-    margin-top: 12%;
+    margin-top: 4%;
     margin-left: 2%;
     width: 70px;
     height: 30px;
@@ -55,18 +71,10 @@ h2{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.2fr 0.2fr 0.2fr;
-    /*grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 43% fit-content(10%);
-    /*grid-template-areas: 
-    "section1 section2 section3"
-    "section4 section5 section6";
-    */
     grid-gap: 20px;
 }
 
-ul {
-    list-style-type: none;
-}
+
 
 section {
     max-width: 750px;
@@ -78,7 +86,6 @@ section {
 }
 
 section:nth-of-type(1){
-    /*grid-area: section1;*/
     background-color: rgb(176, 176, 255);
     background: cornflowerblue;
 }
@@ -88,16 +95,13 @@ section:nth-of-type(1) input{
     height: 20px;
 }
 section:nth-of-type(2){
-    /*grid-area: section2;*/
     background-color: rgb(118, 118, 224);
 }
 section:nth-of-type(3){
-    /*grid-area: section3;*/
     background-color: rgb(78, 78, 243);
 }
 
 section:nth-of-type(4){
-    /*grid-area: section4;*/
     background: cornflowerblue;
 }
 
@@ -119,19 +123,6 @@ section:nth-of-type(4){
     width: 100%;
 }
 
-table{
-    margin-top: 10px;
-    font-size: 12px;
-    margin-left: 0.5%;
-}
-
-/* Hvorfor 2 forskellige??? */
-
-table{
-    width: 99%;
-    border: solid;
-}
-
 .billedeprofil img{
     display: block;
     height: auto;
@@ -150,11 +141,11 @@ table{
     margin-bottom: 5%;
 }
 
-.knap{
-    text-align: center;   
+.drawingSection{
+    text-align: center;  
 }
 
-.knap button {
+.drawingSection button {
     margin-right: 5%;
     margin-left: 5%;
     margin-bottom: 5%;

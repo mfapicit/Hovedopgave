@@ -9,7 +9,12 @@ const profileSchema = new mongoose.Schema({
     axleDistance: Number,
     axleDistanceInBoogie: Number,
     axleCount: Number,
-    godsLenght: Number
+    godsLenght: Number,
+    osDistanceFromAxleToBoogie: Number,
+    isDistanceFromAxleToBoogie: Number,
+    xAxis: [Number],
+    yAxis: [Number]
+
 })
 
 module.exports = mongoose.model('Profile', profileSchema)
