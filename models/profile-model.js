@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // Schema for saved profiles
 const profileSchema = new mongoose.Schema({
-    utNumber: Number,
+    utNumber: String,
     dato: String,
     godsType: String,
     vognLitra: String,

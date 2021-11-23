@@ -32,21 +32,24 @@ async function findByUT(utNumber) {
 async function submit() {
     try {
         var foundUTNumber
+        let url = '/api/profiles'
         var profile = getProfile()
         await findByUT(profile.utNumber).then(data => { foundUTNumber = data.utNumber })
-        if (foundUTNumber == profile.utNumber) getSnackbar(`FEJL! UT NUMMER ${profile.utNumber} FINDES ALLEREDE I DATABASEN`)
+        if (foundUTNumber == profile.utNumber) {
+            await update(url += '/' + foundUTNumber, profile)
+            getSnackbar('Profil opdateret')
+            clearInputFields()
+        }
         else var accept = confirm("VIL DU OPRETTE DENNE PROFIL?\n" + stringBuilder(profile))
         if (accept == true) {
-            let url = '/api/profiles'
             await post(url, profile)
             getSnackbar('Profil oprettet')
-            window.location.assign(`/`)
+            clearInputFields()
         }
     } catch (error) {
         getSnackbar(error)
     }
 }
-
 submitBtn.onclick = submit;
 
 async function searchForProfile() {
@@ -55,8 +58,9 @@ async function searchForProfile() {
     else {
         try {
             await findByUT(searchNumber).then(data => {
+                const utInput = document.getElementById('utNumberInput')
                 if (data.utNumber == searchNumber) {
-                    document.getElementById('utNumberInput').value = data.utNumber
+                    utInput.value = data.utNumber
                     document.getElementById('datoInput').value = data.dato
                     document.getElementById('godsartInput').value = data.godsType
                     document.getElementById('vognlitraInput').value = data.vognLitra
@@ -64,7 +68,12 @@ async function searchForProfile() {
                     document.getElementById('axleDistanceInBoogieInput').value = data.axleDistanceInBoogie
                     document.getElementById('axleCountInput').value = data.axleCount
                     document.getElementById('godslengthInput').value = data.godsLenght
-                    document.getElementById("searchInput").value = ""
+                    document.getElementById('searchInput').value = ""
+
+                    document.getElementById('clearBtn').style.display = "block"
+                    document.getElementById('deleteBtn').style.display = "block"
+                    utInput.readOnly = true
+
                 } else {
                     getSnackbar("Det indtastet nummer finder ingen profil")
                 }
@@ -74,8 +83,21 @@ async function searchForProfile() {
         }
     }
 }
-
 searchBtn.onclick = searchForProfile
+
+async function deleteProfile() {
+    const utNumber = document.getElementById('utNumberInput').value
+    let accept = confirm("Vil du virkelig slette UT nummer: " + utNumber)
+    if (accept) {
+        const response = deLete('/api/profiles/' + utNumber)
+        if (response) {
+            getSnackbar("Profilen er slettet")
+            clearInputFields()
+        }
+    }
+    else showSnackbar('Noget gik galt!')
+}
+deleteBtn.onclick = deleteProfile
 
 /////////////////////////////////////////////////////
 /////////////// Helper methods //////////////////////
@@ -103,15 +125,26 @@ function stringBuilder(profile) {
  * Checks for empty input fields in first section
  */
 function checkForEmptyInput() {
-    if (document.getElementById('utNumberInput').value.trim() == "") throw "UT inputfelt ikke udfyldt"
-    if (document.getElementById('datoInput').value.trim() == "") throw "Dato inputfelt ikke udfyldt"
-    if (document.getElementById('godsartInput').value.trim() == "") throw "Godsart inputfelt ikke udfyldt"
-    if (document.getElementById('vognlitraInput').value.trim() == "") throw "Vognlitra inputfelt ikke udfyldt"
-    if (document.getElementById('godslengthInput').value.trim() == "") throw "Godslængde inputfelt ikke udfyldt"
-    if (document.getElementById('axleDistance').value.trim() == "") throw "Akseldistance inputfelt ikke udfyldt"
-    if (document.getElementById('axleDistanceInBoogieInput').value.trim() == "") throw "Akseldistance mellem boogierne inputfelt ikke udfyldt"
-    if (document.getElementById('axleCountInput').value.trim() == "") throw "Aksel antal inputfelt ikke udfyldt"
+    var myForm = document.getElementById('form')
+    var textInputs = myForm.querySelectorAll('input[type=text]')
+    for (var i in textInputs) {
+        console.log(textInputs[i].id)
+        if (textInputs[i].id != undefined && textInputs[i].value.trim() == "") throw "Udfyld venligst alle inputfelter"
+        //if (textInputs[i].value != undefined && i != 0 && textInputs[i].value.trim() == "") throw "Udfyld venligst alle inputfelter"
+    }
 }
+
+function clearInputFields() {
+    var myDiv = document.getElementById('test')
+    var textInputs = myDiv.querySelectorAll('input[type=text]')
+    for (var i in textInputs) {
+        textInputs[i].value = ""
+        document.getElementById('utNumberInput').readOnly = false
+        document.getElementById('clearBtn').style.display = "none"
+        document.getElementById('deleteBtn').style.display = "none"
+    }
+}
+clearBtn.onclick = clearInputFields
 
 
 

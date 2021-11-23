@@ -9,17 +9,23 @@ exports.create = async function (data) {
 }
 
 /**
- * @param {Number} utNumber 
+ * @param {Integer} utNumber 
  * @returns {Object} if utNumber exsist in the Database
  */
 exports.getByUTNumber = async function (utNumber) {
-    return await Profile.findOne().where('utNumber').eq(utNumber).exec()
+    return await Profile.findOne({ 'utNumber': utNumber })
 }
 
+/**
+ * 
+ * @param {Integer} utNumber to update 
+ * @param {Object} data the updated data
+ * @returns 
+ */
 exports.findOneAndUpdate = async function (utNumber, data) {
-    const profileToUpdate = await getByUTNumber(utNumber)
-    id = profileToUpdate._id
+    return await Profile.findOneAndUpdate({ 'utNumber': utNumber }, data, { new: true })
+}
 
-    return await Profile.findByIdAndUpdate(id, data, { new: true }).exec()
-
+exports.delete = async function (utNumber) {
+    return await Profile.findOneAndDelete({ 'utNumber': utNumber })
 }
