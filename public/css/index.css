@@ -13,13 +13,15 @@ h1 {
 
 h2{
     text-align: center;
-    
 }
 
 .listDiv {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-left: 50px;
+    max-height: 200px;
+    overflow-y: scroll;
+    border: solid 1px;
+    border-radius: 1%;
 }
 
 .listDiv h4 {
@@ -30,6 +32,19 @@ h2{
     margin-bottom: 5px;
     margin-left: 10px;
 }
+
+#plusBtn {
+    margin-left: 85px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    border:solid 1px;
+    text-align: center;
+    background-color: white;
+}
+
 
 
 .clearAndDeleteContainer {
@@ -63,7 +78,6 @@ h2{
 }
 
 .containerMaster{
-    
     margin: 0;
     margin-top: 2%;
     margin-left: 2%;
@@ -80,6 +94,7 @@ section {
     max-width: 750px;
     min-width: 750px;
     margin-left: 40px;
+    margin-bottom: 10px;
     border: solid 1px;
     border-color: rgb(38, 73, 139);
     border-radius: 1%;

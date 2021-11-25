@@ -1,3 +1,25 @@
+// Buttons
+let plusBtn = document.getElementById('plusBtn')
+let clearBtn = document.getElementById('clearBtn')
+let deleteBtn = document.getElementById('deleteBtn')
+
+// Inputs
+let utNumberInput = document.getElementById('utNumberInput')
+let datoInput = document.getElementById('datoInput')
+let godsTypeInput = document.getElementById('godsartInput')
+let vognLitraInput = document.getElementById('vognlitraInput')
+let axleDistanceInput = document.getElementById('axleDistance')
+let axleDistanceInBoogieInput = document.getElementById('axleDistanceInBoogieInput')
+let axleCountInput = document.getElementById('axleCountInput')
+let godsLenghtInput = document.getElementById('godslengthInput')
+let osDistanceFromAxleToBoogieInput = document.getElementById('outsideDistanceFromAxelToBoogie')
+let isDistanceFromAxleToBoogieInput = document.getElementById('insideDistanceFromAxelToBoogie')
+
+// Else
+let xAxis = document.getElementById('xInputs')
+let yAxis = document.getElementById('yInputs')
+let xDiv = document.getElementById('x-axis')
+let yDiv = document.getElementById('y-axis')
 
 
 /**
@@ -6,16 +28,16 @@
  */
 function getProfile() {
     const profile = {
-        utNumber: document.getElementById('utNumberInput').value,
-        dato: document.getElementById('datoInput').value,
-        godsType: document.getElementById('godsartInput').value,
-        vognLitra: document.getElementById('vognlitraInput').value,
-        axleDistance: document.getElementById('axleDistance').value,
-        axleDistanceInBoogie: document.getElementById('axleDistanceInBoogieInput').value,
-        axleCount: document.getElementById('axleCountInput').value,
-        godsLenght: document.getElementById('godslengthInput').value,
-        osDistanceFromAxleToBoogie: document.getElementById('outsideDistanceFromAxelToBoogie').value,
-        isDistanceFromAxleToBoogie: document.getElementById('insideDistanceFromAxelToBoogie').value,
+        utNumber: utNumberInput.value,
+        dato: datoInput.value,
+        godsType: godsTypeInput.value,
+        vognLitra: vognLitraInput.value,
+        axleDistance: axleDistanceInput.value,
+        axleDistanceInBoogie: axleDistanceInBoogieInput.value,
+        axleCount: axleCountInput.value,
+        godsLenght: godsLenghtInput.value,
+        osDistanceFromAxleToBoogie: osDistanceFromAxleToBoogieInput.value,
+        isDistanceFromAxleToBoogie: isDistanceFromAxleToBoogieInput.value,
         xAxis: getXValues(),
         yAxis: getYValues()
     }
@@ -58,30 +80,33 @@ async function submit() {
 }
 submitBtn.onclick = submit;
 
+/**
+ * Search for an utNumber, found by the value in the #searchInput field
+ */
 async function searchForProfile() {
-    var searchNumber = document.getElementById("searchInput").value
+    let searchNumber = document.getElementById("searchInput").value
     if (searchNumber.trim() == "") getSnackbar("Indtast et nummer")
     else {
         try {
             await findByUT(searchNumber).then(data => {
-                const utInput = document.getElementById('utNumberInput')
+                const utInput = utNumberInput
                 if (data.utNumber == searchNumber) {
                     utInput.value = data.utNumber
-                    document.getElementById('datoInput').value = data.dato
-                    document.getElementById('godsartInput').value = data.godsType
-                    document.getElementById('vognlitraInput').value = data.vognLitra
-                    document.getElementById('axleDistance').value = data.axleDistance
-                    document.getElementById('axleDistanceInBoogieInput').value = data.axleDistanceInBoogie
-                    document.getElementById('axleCountInput').value = data.axleCount
-                    document.getElementById('godslengthInput').value = data.godsLenght
-                    document.getElementById('insideDistanceFromAxelToBoogie').value = data.isDistanceFromAxleToBoogie
-                    document.getElementById('outsideDistanceFromAxelToBoogie').value = data.osDistanceFromAxleToBoogie
+                    datoInput.value = data.dato
+                    godsTypeInput.value = data.godsType
+                    vognLitraInput.value = data.vognLitra
+                    axleDistanceInput.value = data.axleDistance
+                    axleDistanceInBoogieInput.value = data.axleDistanceInBoogie
+                    axleCountInput.value = data.axleCount
+                    godsLenghtInput.value = data.godsLenght
+                    isDistanceFromAxleToBoogieInput.value = data.isDistanceFromAxleToBoogie
+                    osDistanceFromAxleToBoogieInput.value = data.osDistanceFromAxleToBoogie
                     makeInputFields(data.xAxis.length)
                     fillXAndY(data.xAxis, data.yAxis)
 
                     document.getElementById('searchInput').value = ""
-                    document.getElementById('clearBtn').style.display = "block"
-                    document.getElementById('deleteBtn').style.display = "block"
+                    clearBtn.style.display = "block"
+                    deleteBtn.style.display = "block"
                     utInput.readOnly = true
 
                 } else {
@@ -95,8 +120,11 @@ async function searchForProfile() {
 }
 searchBtn.onclick = searchForProfile
 
+/**
+ * Delete the profile, that is found by the search function 
+ */
 async function deleteProfile() {
-    const utNumber = document.getElementById('utNumberInput').value
+    const utNumber = utNumberInput.value
     let accept = confirm("Vil du virkelig slette UT nummer: " + utNumber)
     if (accept) {
         const response = deLete('/api/profiles/' + utNumber)
@@ -149,17 +177,21 @@ function checkForEmptyInput() {
     }
 }
 
+/**
+ * Clear all input field in section 1
+ */
 function clearInputFields() {
     let myForm = document.getElementById('form')
     let textInputs = myForm.querySelectorAll('input[type=text]')
     for (var i in textInputs) {
         textInputs[i].value = ""
-        document.getElementById('utNumberInput').readOnly = false
-        document.getElementById('clearBtn').style.display = "none"
-        document.getElementById('deleteBtn').style.display = "none"
+        utNumberInput.readOnly = false
+        clearBtn.style.display = "none"
+        deleteBtn.style.display = "none"
     }
-    document.getElementById('xInputs').innerHTML = ""
-    document.getElementById('yInputs').innerHTML = ""
+    plusBtn.style.display = "none"
+    xAxis.innerHTML = ""
+    yAxis.innerHTML = ""
     myForm.querySelector('input[type=date]').value = ""
 }
 clearBtn.onclick = clearInputFields
@@ -168,8 +200,8 @@ clearBtn.onclick = clearInputFields
 
 function getXValues() {
     let xArray = []
-    let myDiv = document.getElementById('x-axis')
-    let inputs = myDiv.querySelectorAll('input[type=text]')
+
+    let inputs = xDiv.querySelectorAll('input[type=text]')
     for (var i in inputs) {
         if (inputs[i].id != undefined && inputs[i].value.trim() != "") xArray.push(parseInt(inputs[i].value))
     }
@@ -178,8 +210,7 @@ function getXValues() {
 
 function getYValues() {
     let yArray = []
-    let myDiv = document.getElementById('y-axis')
-    let inputs = myDiv.querySelectorAll('input[type=text]')
+    let inputs = yDiv.querySelectorAll('input[type=text]')
     for (var i in inputs) {
         if (inputs[i].id != undefined && inputs[i].value.trim() != "") yArray.push(parseInt(inputs[i].value))
     }
@@ -187,9 +218,6 @@ function getYValues() {
 }
 
 function fillXAndY(xArray, yArray) {
-
-
-    let xDiv = document.getElementById('x-axis')
     let inputs = xDiv.querySelectorAll('input[type=text]')
     if (xArray != "") {
         for (var x in inputs) {
@@ -199,7 +227,6 @@ function fillXAndY(xArray, yArray) {
     }
 
     if (yArray != "") {
-        let yDiv = document.getElementById('y-axis')
         inputs = yDiv.querySelectorAll('input[type=text]')
         for (var y in inputs) {
             if (!yArray[y]) inputs[y].value = ""
@@ -209,17 +236,22 @@ function fillXAndY(xArray, yArray) {
 }
 
 function makeInputFields(antal) {
-    let xAxis = document.getElementById('xInputs')
-    let yAxis = document.getElementById('yInputs')
+    if (antal > 0) plusBtn.style.display = "block"
+    else plusBtn.style.display = "none"
     xAxis.innerHTML = ""
     yAxis.innerHTML = ""
-    //var antal = document.getElementById('inputCount').value
     for (let i = 0; i < antal; i++) {
         xAxis.innerHTML += '<input type="text">'
         yAxis.innerHTML += '<input type="text">'
     }
 }
 
+function createOneInputField() {
+    let xinput = document.createElement('input')
+    let yinput = document.createElement('input')
+    xAxis.appendChild(xinput)
+    yAxis.appendChild(yinput)
+}
 
 
 
