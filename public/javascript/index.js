@@ -21,6 +21,15 @@ let yAxis = document.getElementById('yInputs')
 let xDiv = document.getElementById('x-axis')
 let yDiv = document.getElementById('y-axis')
 
+// Sets minimum date to today in date input in section 1
+const today = new Date()
+const day = today.getDate()
+const month = today.getMonth() + 1
+const year = today.getFullYear()
+let todayDate = `${year}-${month}-${day}`
+if (day < 10) day = '0' + day
+if (month < 10) month = '0' + month
+datoInput.setAttribute('min', todayDate)
 
 /**
  * Method to save the values of the profile
@@ -174,6 +183,7 @@ function checkForEmptyInput() {
     for (var i in textInputs) {
         if (textInputs[i].id != undefined && textInputs[i].value.trim() == "" && i <= 8) throw "Udfyld venligst alle inputfelter"
         if (!dateValue) throw "Udfyld dato!"
+        if (dateValue < todayDate) throw `Dato skal være efter ${todayDate}`
     }
 }
 
@@ -241,8 +251,10 @@ function makeInputFields(antal) {
     xAxis.innerHTML = ""
     yAxis.innerHTML = ""
     for (let i = 0; i < antal; i++) {
-        xAxis.innerHTML += '<input type="text">'
-        yAxis.innerHTML += '<input type="text">'
+        let xinput = document.createElement('input')
+        let yinput = document.createElement('input')
+        xAxis.appendChild(xinput)
+        yAxis.appendChild(yinput)
     }
 }
 
