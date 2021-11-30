@@ -1,7 +1,9 @@
 // Buttons
 let plusBtn = document.getElementById('plusBtn')
+let minusBtn = document.getElementById('minusBtn')
 let clearBtn = document.getElementById('clearBtn')
 let deleteBtn = document.getElementById('deleteBtn')
+let submitBtn = document.getElementById('submitBtn')
 
 // Inputs
 let utNumberInput = document.getElementById('utNumberInput')
@@ -22,6 +24,7 @@ let xDiv = document.getElementById('x-axis')
 let yDiv = document.getElementById('y-axis')
 
 // Sets minimum date to today in date input in section 1
+let updating = false // Allow earlier date at update
 const today = new Date()
 const day = today.getDate()
 const month = today.getMonth() + 1
@@ -73,9 +76,11 @@ async function submit() {
         var profile = getProfile()
         await findByUT(profile.utNumber).then(data => { foundUTNumber = data.utNumber })
         if (foundUTNumber == profile.utNumber) {
+            updating = true
             await update(url += '/' + foundUTNumber, profile)
             getSnackbar('Profil opdateret')
             clearInputFields()
+            updating = false
         }
         else var accept = confirm("VIL DU OPRETTE DENNE PROFIL?\n" + stringBuilder(profile))
         if (accept == true) {
@@ -116,6 +121,7 @@ async function searchForProfile() {
                     document.getElementById('searchInput').value = ""
                     clearBtn.style.display = "block"
                     deleteBtn.style.display = "block"
+                    submitBtn.value = "Opdater"
                     utInput.readOnly = true
 
                 } else {
@@ -140,6 +146,7 @@ async function deleteProfile() {
         if (response) {
             getSnackbar("Profilen er slettet")
             clearInputFields()
+            submitBtn.value = "Opret"
         }
     }
     else showSnackbar('Noget gik galt!')
@@ -183,7 +190,7 @@ function checkForEmptyInput() {
     for (var i in textInputs) {
         if (textInputs[i].id != undefined && textInputs[i].value.trim() == "" && i <= 8) throw "Udfyld venligst alle inputfelter"
         if (!dateValue) throw "Udfyld dato!"
-        if (dateValue < todayDate) throw `Dato skal være efter ${todayDate}`
+        if (dateValue < todayDate && updating == false) throw `Dato skal være efter ${todayDate}`
     }
 }
 
@@ -200,9 +207,11 @@ function clearInputFields() {
         deleteBtn.style.display = "none"
     }
     plusBtn.style.display = "none"
+    minusBtn.style.display = "none"
     xAxis.innerHTML = ""
     yAxis.innerHTML = ""
     myForm.querySelector('input[type=date]').value = ""
+    submitBtn.value = "Opret"
 }
 clearBtn.onclick = clearInputFields
 
@@ -246,13 +255,21 @@ function fillXAndY(xArray, yArray) {
 }
 
 function makeInputFields(antal) {
-    if (antal > 0) plusBtn.style.display = "block"
-    else plusBtn.style.display = "none"
+    if (antal > 0) {
+        plusBtn.style.display = "block"
+        minusBtn.style.display = "block"
+    }
+    else {
+        plusBtn.style.display = "none"
+        minusBtn.style.display = "none"
+    }
     xAxis.innerHTML = ""
     yAxis.innerHTML = ""
     for (let i = 0; i < antal; i++) {
         let xinput = document.createElement('input')
+        xinput.type = "text"
         let yinput = document.createElement('input')
+        yinput.type = "text"
         xAxis.appendChild(xinput)
         yAxis.appendChild(yinput)
     }
@@ -265,6 +282,13 @@ function createOneInputField() {
     yAxis.appendChild(yinput)
 }
 
+function removeOneInputField() {
+    let xinputs = xDiv.querySelectorAll('input[type=text]')
+    let yinputs = yDiv.querySelectorAll('input[type=text]')
+
+    xAxis.removeChild(xinputs[xinputs.length - 1])
+    yAxis.removeChild(yinputs[yinputs.length - 1])
+}
 
 
 

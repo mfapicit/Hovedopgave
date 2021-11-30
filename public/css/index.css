@@ -33,7 +33,7 @@ h2{
     margin-left: 10px;
 }
 
-#plusBtn {
+#plusBtn, #minusBtn{
     margin-left: 85px;
     border-radius: 50%;
     width: 25px;
@@ -44,8 +44,6 @@ h2{
     text-align: center;
     background-color: white;
 }
-
-
 
 .clearAndDeleteContainer {
     display: grid;
@@ -91,8 +89,7 @@ h2{
 
 
 section {
-    max-width: 750px;
-    min-width: 750px;
+    width: 600px;
     margin-left: 40px;
     margin-bottom: 10px;
     border: solid 1px;

@@ -25,7 +25,7 @@
                 <h2>Definer Transport</h2>
                 <div class="searchContainer">
                     <input id="searchInput" type="text" placeholder="Søg på UT nummer">
-                    <button id="searchBtn">Søg</button>
+                    <input type="button" id="searchBtn" value="Søg">
                 </div>
                 <div class="clearAndDeleteContainer">
                     <input style="display: none;" id="clearBtn" type="button" value="Clear">
@@ -107,6 +107,8 @@
                             <h4>Højde over SO</h4>
                             <div id="yInputs">
                             </div>
+                            <input onclick="removeOneInputField()" style="display: none;" id="minusBtn" type="button"
+                                value="-">
                         </div>
                     </div>
                     <input type="submit" id="submitBtn" value="Opret">
