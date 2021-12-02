@@ -25,11 +25,11 @@
                 <h2>Definer Transport</h2>
                 <div class="searchContainer">
                     <input id="searchInput" type="text" placeholder="Søg på UT nummer">
-                    <input type="button" id="searchBtn" value="Søg">
+                    <input type="button" id="searchBtn" value="Søg" onclick="searchForProfile()">
                 </div>
                 <div class="clearAndDeleteContainer">
-                    <input style="display: none;" id="clearBtn" type="button" value="Clear">
-                    <input style="display: none;" id="deleteBtn" type="button" value="Slet">
+                    <input style="display: none;" id="clearBtn" type="button" value="Clear" onclick="clearInputFields()">
+                    <input style="display: none;" id="deleteBtn" type="button" value="Slet" onclick="deleteProfile()">
                 </div>
                 <form id="form" action="" onsubmit="return false">
                     <div class="wrapper">

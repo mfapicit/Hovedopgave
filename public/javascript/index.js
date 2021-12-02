@@ -4,6 +4,7 @@ let minusBtn = document.getElementById('minusBtn')
 let clearBtn = document.getElementById('clearBtn')
 let deleteBtn = document.getElementById('deleteBtn')
 let submitBtn = document.getElementById('submitBtn')
+let searchBtn = document.getElementById('searchBtn')
 
 // Inputs
 let utNumberInput = document.getElementById('utNumberInput')
@@ -25,10 +26,10 @@ let yDiv = document.getElementById('y-axis')
 
 // Sets minimum date to today in date input in section 1
 let updating = false // Allow earlier date at update
-const today = new Date()
-const day = today.getDate()
-const month = today.getMonth() + 1
-const year = today.getFullYear()
+let today = new Date()
+let day = today.getDate()
+let month = today.getMonth() + 1
+let year = today.getFullYear()
 let todayDate = `${year}-${month}-${day}`
 if (day < 10) day = '0' + day
 if (month < 10) month = '0' + month
@@ -71,6 +72,7 @@ async function findByUT(utNumber) {
  */
 async function submit() {
     try {
+        console.log("her")
         var foundUTNumber
         let url = '/api/profiles'
         var profile = getProfile()
@@ -133,7 +135,6 @@ async function searchForProfile() {
         }
     }
 }
-searchBtn.onclick = searchForProfile
 
 /**
  * Delete the profile, that is found by the search function 
@@ -151,7 +152,6 @@ async function deleteProfile() {
     }
     else showSnackbar('Noget gik galt!')
 }
-deleteBtn.onclick = deleteProfile
 
 /////////////////////////////////////////////////////
 /////////////// Helper methods //////////////////////
@@ -213,8 +213,6 @@ function clearInputFields() {
     myForm.querySelector('input[type=date]').value = ""
     submitBtn.value = "Opret"
 }
-clearBtn.onclick = clearInputFields
-
 
 
 function getXValues() {
@@ -277,7 +275,9 @@ function makeInputFields(antal) {
 
 function createOneInputField() {
     let xinput = document.createElement('input')
+    xinput.type = 'text'
     let yinput = document.createElement('input')
+    yinput.type = 'text'
     xAxis.appendChild(xinput)
     yAxis.appendChild(yinput)
 }
@@ -285,6 +285,10 @@ function createOneInputField() {
 function removeOneInputField() {
     let xinputs = xDiv.querySelectorAll('input[type=text]')
     let yinputs = yDiv.querySelectorAll('input[type=text]')
+    if (xinputs.length == 1) {
+        plusBtn.style.display = 'none'
+        minusBtn.style.display = 'none'
+    }
 
     xAxis.removeChild(xinputs[xinputs.length - 1])
     yAxis.removeChild(yinputs[yinputs.length - 1])
